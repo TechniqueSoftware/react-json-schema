@@ -2,15 +2,15 @@ import React from 'react';
 import { Button, Grid, Col, Row } from 'react-bootstrap';
 
 class ContactForm extends React.Component {
-  
+
   constructor(props) {
     super(props);
   }
-  
+
   alertSubmit() {
     alert('Hey, you submitted the form!');
   }
-  
+
   render() {
     return (
       <Grid>
@@ -28,6 +28,9 @@ class ContactForm extends React.Component {
   }
 }
 
-ContactForm.propTypes = { title: React.PropTypes.string.isRequired };
+ContactForm.propTypes = {
+  title: React.PropTypes.string.isRequired,
+  children: React.PropTypes.arrayOf(React.PropTypes.element)
+};
 
 export default ContactForm;

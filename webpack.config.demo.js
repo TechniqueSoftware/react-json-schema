@@ -16,11 +16,11 @@ module.exports = {
       {
         test: /\.js|jsx$/,
         exclude: /node_modules/,
-        loaders: ['babel-loader']
+        loader: 'babel-loader'
       },
       {
         test: /\.html$/,
-        loader: "file?name=[name].[ext]",
+        loader: 'file?name=[name].[ext]'
       }
     ]
   },
@@ -31,4 +31,4 @@ module.exports = {
   resolve: {
     extensions: ['', '.js', '.jsx']
   }
-}
+};

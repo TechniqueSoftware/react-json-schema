@@ -6,14 +6,14 @@ module.exports = {
   },
   module: {
     loaders: [
-      { 
-        test: /\.js|jsx$/, 
+      {
+        test: /\.js|jsx$/,
         loader: 'jsx-loader'
       },
       {
         test: /\.js|jsx$/,
         exclude: /node_modules/,
-        loaders: ['babel-loader']
+        loader: 'babel-loader'
       }
     ]
   },

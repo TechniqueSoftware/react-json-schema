@@ -4,7 +4,7 @@
   "description": "Write component schema in JSON to assemble a react node",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --progress --colors --inline",
+    "start": "webpack-dev-server --progress --colors --inline --config webpack.config.demo.js",
     "test": "webpack --progress --profile --colors --config webpack.config.spec.js"
   },
   "keywords": [

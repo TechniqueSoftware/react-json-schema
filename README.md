@@ -35,12 +35,15 @@ contactForm.setComponentMap(componentMap);
 React.render(contactForm.parseSchema(schema), document.getElementById('json-react-schema'));
 ```
 
-### Contribution
+### Contribution and Code of Conduct
+
+Please use a linter that recognizes eslint rules
 
 To run the demo
 * have webpack and webpack-dev-server globally installed
 * `npm install`
 * `npm start`
+* The app will be served at http://localhost:8080
 
 To run tests
 * have webpack, webpack-dev-server and jasmine globally installed
