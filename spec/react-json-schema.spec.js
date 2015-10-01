@@ -2,7 +2,7 @@
 
 // import ReactJson from '../lib/ReactJsonSchema';
 
-describe('ReactJson', () => {
+export default describe('ReactJson', () => {
   describe('when parsing schema', () => {
     describe('and when the schema\'s root type is of type', () => {
       describe('`Array`', () => {

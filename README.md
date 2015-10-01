@@ -1,6 +1,6 @@
 # react-json-schema
 
-## !! Still in Development !! 
+## !! Still in Development !!
 
 This library builds a React node from JSON by mapping JSON definitions to React components you expose. The interest behind making this library is to allow non-programmers whip up a view using JSON, which can be easily be stored and retrieved in a database. Use it as you'd like. (JSX not required)
 
@@ -49,3 +49,4 @@ To run tests
 * have webpack, webpack-dev-server and jasmine globally installed
 * `npm install`
 * `npm test`
+* Jasmine's test report will output in /spec/index.html

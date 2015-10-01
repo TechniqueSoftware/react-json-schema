@@ -1,3 +1,7 @@
+/* eslint "esnext": false */
+
+'use strict';
+
 module.exports = {
   entry: {
     javascript: './demo/index.jsx',

@@ -1,8 +1,19 @@
+/* eslint "esnext": false */
+
+'use strict';
+
+var path = require('path');
+var srcPath = path.join(__dirname, './spec');
+
 module.exports = {
-  entry: ('./spec/spec.entry'),
+  entry: {
+    javascript:  path.join(srcPath, 'spec.entry'),
+    html:  path.join(srcPath, 'index.html')
+  },
   output: {
-    path: './spec',
-    filename: 'spec.js',
+    path: srcPath,
+    publicPath: '/spec',
+    filename: 'spec.js'
   },
   module: {
     loaders: [
@@ -14,6 +25,10 @@ module.exports = {
         test: /\.js|jsx$/,
         exclude: /node_modules/,
         loader: 'babel-loader'
+      },
+      {
+        test: /\.html$/,
+        loader: 'file?name=[name].[ext]'
       }
     ]
   },
