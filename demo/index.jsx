@@ -16,8 +16,8 @@ const schema = {
 };
 
 const componentMap = {
-  'ContactForm': ContactForm,
-  'StringField': StringField
+  ContactForm: ContactForm,
+  StringField: StringField
 };
 
 const contactForm = new ReactJsonSchema();
