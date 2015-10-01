@@ -3,3 +3,4 @@
 .git
 node_modules
 npm-debug.log
+spec/spec.js
