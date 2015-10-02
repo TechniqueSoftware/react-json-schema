@@ -15,11 +15,7 @@ const schema = {
   ]
 };
 
-const componentMap = {
-  ContactForm: ContactForm,
-  StringField: StringField
-};
-
+const componentMap = { ContactForm, StringField };
 const contactForm = new ReactJsonSchema();
 contactForm.setComponentMap(componentMap);
 

@@ -24,15 +24,13 @@ const schema = {
   ]
 }
 
-const componentMap = {
-  "ContactForm": ContactForm,
-  "StringField": StringField
-}
-
+/* es6 object literal shorthand */
+const componentMap = { ContactForm, StringField }
 const contactForm = new ReactJsonSchema();
 contactForm.setComponentMap(componentMap);
 
-React.render(contactForm.parseSchema(schema), document.getElementById('json-react-schema'));
+React.render(contactForm.parseSchema(schema),
+  document.getElementById('json-react-schema'));
 ```
 
 ### Contribution and Code of Conduct
@@ -50,3 +48,8 @@ To run tests
 * `npm install`
 * `npm test`
 * Jasmine's test report will output in /spec/index.html
+
+### Roadmap
+
+* Support custom keys for children
+* Support native html tags as components, with the option to customize
