@@ -1,7 +1,7 @@
 /* global jasmine, beforeEach, describe, it, expect, fail, spyOn */
 
 import React from 'react';
-import _ from 'lodash';
+import Lang from 'lodash/lang';
 import ReactJsonSchema from '../lib/ReactJsonSchema';
 
 let reactJsonSchema;
@@ -24,25 +24,25 @@ export default describe('ReactJsonSchema', () => {
   describe('when parsing schema', () => {
     it('should return an array of React elements when schema\'s root type is of type array.', () => {
       const actual = reactJsonSchema.parseSchema([schema]);
-      expect(_.isArray(actual)).toBe(true);
+      expect(Lang.isArray(actual)).toBe(true);
       const component = actual[0];
       expect(React.isValidElement(<component />)).toBe(true);
     });
     it('should return a root React element when the schema\'s root type is of type object.', () => {
       const actual = reactJsonSchema.parseSchema(schema);
-      expect(_.isObject(actual)).toBe(true);
+      expect(Lang.isObject(actual)).toBe(true);
     });
   });
   describe('when parsing sub-schemas', () => {
     it('should return an empty array when no schemas are passed as an argument.', () => {
       const actual = reactJsonSchema.parseSubSchemas();
-      expect(_.isArray(actual)).toBe(true);
+      expect(Lang.isArray(actual)).toBe(true);
     });
     it('should return an array of React elements when valid schemas are passed as an argument.', () => {
       const subSchemas = [schema, schema];
       const actual = reactJsonSchema.parseSubSchemas(subSchemas);
       expect(!!actual.length).toBe(true);
-      expect(_.isObject(actual[0])).toBe(true);
+      expect(Lang.isObject(actual[0])).toBe(true);
     });
     it('should construct sub-schema React elements by parsing each sub-schema.', () => {
       const subSchemas = [schema, schema];
@@ -52,7 +52,7 @@ export default describe('ReactJsonSchema', () => {
     });
     it('should assign a key to the current sub-schema based on the current sub-schema\'s index to meet React\'s key expectation of multiple React elements.', () => {
       spyOn(reactJsonSchema, 'parseSchema');
-      const schemaClone = _.clone(schema);
+      const schemaClone = Lang.clone(schema);
       reactJsonSchema.parseSubSchemas([schemaClone]);
       schemaClone.key = 0;
       expect(reactJsonSchema.parseSchema).toHaveBeenCalledWith(schemaClone);
@@ -71,7 +71,7 @@ export default describe('ReactJsonSchema', () => {
       expect(React.isValidElement(<actual />)).toBe(true);
     });
     it('should resolve and pass props (schema key value pair not described by component or children) and child elements to React\'s create element functionality.', () => {
-      const largeSchema = _.clone(schema);
+      const largeSchema = Lang.clone(schema);
       largeSchema.children = [schema];
       spyOn(React, 'createElement');
       reactJsonSchema.createComponent(largeSchema);
@@ -97,15 +97,15 @@ export default describe('ReactJsonSchema', () => {
   describe('when resolving component children', () => {
     it('should return an empty array if no child components are present.', () => {
       const actual = reactJsonSchema.resolveComponentChildren(schema);
-      expect(_.isArray(actual)).toBe(true);
-      expect(_.isEmpty(actual)).toBe(true);
+      expect(Lang.isArray(actual)).toBe(true);
+      expect(Lang.isEmpty(actual)).toBe(true);
     });
     it('should return an array with child components if the children attribute is defined by valid sub-schemas.', () => {
-      const largeSchema = _.clone(schema);
+      const largeSchema = Lang.clone(schema);
       largeSchema.children = [schema];
       const actual = reactJsonSchema.resolveComponentChildren(largeSchema);
-      expect(_.isArray(actual)).toBe(true);
-      expect(_.isEmpty(actual)).toBe(false);
+      expect(Lang.isArray(actual)).toBe(true);
+      expect(Lang.isEmpty(actual)).toBe(false);
     });
   });
 });
