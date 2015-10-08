@@ -1,21 +1,33 @@
 {
   "name": "react-json-schema",
   "version": "0.1.0",
-  "description": "Write component schema in JSON to assemble a react node",
-  "main": "index.js",
+  "description": "Write component schema in JSON; parse to create react elements.",
+  "keywords": [
+    "react",
+    "JSON",
+    "schema",
+    "components"
+  ],
+  "author": {
+    "name": "elliottisonfire",
+    "url": "http://elliottisonfire.com"
+  },
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/TechniqueSoftware/react-json-schema/issues"
+  },
   "scripts": {
-    "start": "webpack-dev-server --progress --colors --inline --config webpack.config.demo.js",
+    "prebuild": "rm -rf dist && mkdir dist",
+    "build": "babel lib/ReactJsonSchema.js -o dist/react-json-schema.js",
+    "postbuild": "node_modules/uglify-js/bin/uglifyjs dist/react-json-schema.js -o dist/react-json-schema.min.js",
+    "demo": "webpack-dev-server --progress --colors --inline --config webpack.config.demo.js",
     "test": "webpack --progress --profile --colors --config webpack.config.spec.js"
   },
-  "keywords": [
-    "JSON",
-    "React",
-    "JSON",
-    "Schema",
-    "Components"
+  "main": "dist/react-json-schema.js",
+  "files": [
+    "lib",
+    "dist"
   ],
-  "author": "elliottisonfire",
-  "license": "Apache-2.0",
   "dependencies": {
     "lodash": "^3.10.1",
     "react": "^0.13.3"
@@ -32,6 +44,7 @@
     "jsx-loader": "^0.13.2",
     "path": "^0.12.7",
     "react-bootstrap": "^0.25.2",
+    "uglify-js": "^2.4.24",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.0"
   }

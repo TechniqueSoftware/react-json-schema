@@ -35,23 +35,25 @@ React.render(contactForm.parseSchema(schema),
   document.getElementById('json-react-schema'));
 ```
 
-### Contribution and Code of Conduct
-
-Please use a linter that recognizes eslint rules
+### Try the Demo
 
 To run the demo
 * have webpack and webpack-dev-server globally installed
 * `npm install`
-* `npm start`
+* `npm run demo`
 * The app will be served at http://localhost:8080
 
-To run tests
+### Contribution and Code of Conduct
+
+Please use a linter that recognizes eslint rules
+
 * have webpack, webpack-dev-server and jasmine globally installed
 * `npm install`
-* `npm test`
-* Jasmine's test report will output in /spec/index.html
+* `npm test` (Jasmine's test report will output in /spec/index.html)
+* `npm run build`
 
 ### Roadmap
 
 * Support custom keys for children
 * Support native html tags as components, with the option to add custom tag definitions
+* Drop lodash dependency?

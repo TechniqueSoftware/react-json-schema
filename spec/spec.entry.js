@@ -1,1 +1,1 @@
-export * from './react-json-schema.spec.js';
+export * from './ReactJsonSchemaSpec.js';
