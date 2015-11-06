@@ -1,6 +1,6 @@
 {
   "name": "react-json-schema",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Write component schema in JSON; parse to create react elements.",
   "keywords": [
     "react",
@@ -13,8 +13,8 @@
     "url": "http://elliottisonfire.com"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/TechniqueSoftware/react-json-schema"
+    "type": "git",
+    "url": "https://github.com/TechniqueSoftware/react-json-schema"
   },
   "license": "Apache-2.0",
   "bugs": {
