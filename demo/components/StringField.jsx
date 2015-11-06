@@ -18,7 +18,7 @@ class StringField extends React.Component {
 
   render() {
     return (
-      <Input type="text" onChange={this.validateInput.bind(this)} {...this.props} />
+      <Input type="text" onChange={this.validateInput.bind(this)} label={this.props.label} help={this.props.help} />
     );
   }
 }

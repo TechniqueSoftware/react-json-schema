@@ -12,17 +12,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var _react = require('react');
 
-var _react2 = _interopRequireDefault(_react);
+var _node_modulesReactLibReactDOM = require('../node_modules/react/lib/ReactDOM');
+
+var _node_modulesReactLibReactDOM2 = _interopRequireDefault(_node_modulesReactLibReactDOM);
 
 var _lodash = require('lodash');
-
-var _lodash2 = _interopRequireDefault(_lodash);
 
 var _componentMap = null;
 
 var ReactJsonSchema = (function () {
   function ReactJsonSchema() {
     _classCallCheck(this, ReactJsonSchema);
+
+    console.log(_node_modulesReactLibReactDOM2['default']);
   }
 
   _createClass(ReactJsonSchema, [{
@@ -30,7 +32,7 @@ var ReactJsonSchema = (function () {
     value: function parseSchema(schema) {
       var element = null;
       var elements = null;
-      if (_lodash2['default'].isArray(schema)) {
+      if ((0, _lodash.isArray)(schema)) {
         elements = this.parseSubSchemas(schema);
       } else {
         element = this.createComponent(schema);
@@ -43,7 +45,7 @@ var ReactJsonSchema = (function () {
       var _this = this;
 
       var Components = [];
-      _lodash2['default'].forEach(subSchemas, function (subSchema, index) {
+      (0, _lodash.forEach)(subSchemas, function (subSchema, index) {
         subSchema.key = index;
         Components.push(_this.parseSchema(subSchema));
       });
@@ -52,21 +54,23 @@ var ReactJsonSchema = (function () {
   }, {
     key: 'createComponent',
     value: function createComponent(schema) {
-      var props = _lodash2['default'].clone(schema);
-      props = _lodash2['default'].omit(props, ['component', 'children']);
+      var props = (0, _lodash.clone)(schema);
+      props = (0, _lodash.omit)(props, ['component', 'children']);
       var Component = this.resolveComponent(schema);
-      var Children = this.resolveComponentChildren(schema);
-      return _react2['default'].createElement(Component, props, Children);
+      var Children = props.text || this.resolveComponentChildren(schema);
+      return (0, _react.createElement)(Component, props, Children);
     }
   }, {
     key: 'resolveComponent',
     value: function resolveComponent(schema) {
       var Component = null;
-      if (_lodash2['default'].has(schema, 'component')) {
-        if (_lodash2['default'].isObject(schema.component)) {
+      if ((0, _lodash.has)(schema, 'component')) {
+        if ((0, _lodash.isObject)(schema.component)) {
           Component = schema.component;
-        } else if (_lodash2['default'].isString(schema.component)) {
+        } else if (_componentMap && _componentMap[schema.component]) {
           Component = _componentMap[schema.component];
+        } else if ((0, _lodash.has)(_node_modulesReactLibReactDOM2['default'], schema.component)) {
+          Component = schema.component;
         }
       } else {
         throw new Error('ReactJsonSchema could not resolve a component due to a missing component attribute in the schema.');
@@ -76,7 +80,7 @@ var ReactJsonSchema = (function () {
   }, {
     key: 'resolveComponentChildren',
     value: function resolveComponentChildren(schema) {
-      return _lodash2['default'].has(schema, 'children') ? this.parseSchema(schema.children) : [];
+      return (0, _lodash.has)(schema, 'children') ? this.parseSchema(schema.children) : [];
     }
   }, {
     key: 'getComponentMap',
