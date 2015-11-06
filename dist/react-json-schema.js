@@ -23,8 +23,6 @@ var _componentMap = null;
 var ReactJsonSchema = (function () {
   function ReactJsonSchema() {
     _classCallCheck(this, ReactJsonSchema);
-
-    console.log(_node_modulesReactLibReactDOM2['default']);
   }
 
   _createClass(ReactJsonSchema, [{
