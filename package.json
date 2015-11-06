@@ -1,6 +1,6 @@
 {
   "name": "react-json-schema",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Write component schema in JSON; parse to create react elements.",
   "keywords": [
     "react",
@@ -13,8 +13,8 @@
     "url": "http://elliottisonfire.com"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/TechniqueSoftware/react-json-schema"
+    "type": "git",
+    "url": "https://github.com/TechniqueSoftware/react-json-schema"
   },
   "license": "Apache-2.0",
   "bugs": {
@@ -34,7 +34,7 @@
   ],
   "dependencies": {
     "lodash": "^3.10.1",
-    "react": "^0.13.3"
+    "react": "^0.14.2"
   },
   "devDependencies": {
     "babel-core": "^5.8.25",
@@ -48,7 +48,8 @@
     "jasmine": "^2.3.2",
     "jsx-loader": "^0.13.2",
     "path": "^0.12.7",
-    "react-bootstrap": "^0.25.2",
+    "react-bootstrap": "^0.27.3",
+    "react-dom": "^0.14.2",
     "uglify-js": "^2.4.24",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.0"
