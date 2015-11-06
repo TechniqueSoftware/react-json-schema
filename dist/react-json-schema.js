@@ -12,9 +12,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var _react = require('react');
 
-var _node_modulesReactLibReactDOM = require('../node_modules/react/lib/ReactDOM');
+var _node_modulesReactLibReactDOMFactories = require('../node_modules/react/lib/ReactDOMFactories');
 
-var _node_modulesReactLibReactDOM2 = _interopRequireDefault(_node_modulesReactLibReactDOM);
+var _node_modulesReactLibReactDOMFactories2 = _interopRequireDefault(_node_modulesReactLibReactDOMFactories);
 
 var _lodash = require('lodash');
 
@@ -67,7 +67,7 @@ var ReactJsonSchema = (function () {
           Component = schema.component;
         } else if (_componentMap && _componentMap[schema.component]) {
           Component = _componentMap[schema.component];
-        } else if ((0, _lodash.has)(_node_modulesReactLibReactDOM2['default'], schema.component)) {
+        } else if ((0, _lodash.has)(_node_modulesReactLibReactDOMFactories2['default'], schema.component)) {
           Component = schema.component;
         }
       } else {
