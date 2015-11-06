@@ -1,4 +1,4 @@
-import React from 'react';
+import ReactDOM from 'react-dom';
 import ContactForm from './components/ContactForm';
 import StringField from './components/StringField';
 import CheckboxField from './components/CheckboxField';
@@ -13,7 +13,7 @@ const welcomeSchema = {
 };
 
 const welcomeBanner = new ReactJsonSchema();
-React.render(welcomeBanner.parseSchema(welcomeSchema), document.getElementById('welcome-banner'));
+ReactDOM.render(welcomeBanner.parseSchema(welcomeSchema), document.getElementById('welcome-banner'));
 
 const formSchema = {
   'component': 'ContactForm',
@@ -43,4 +43,4 @@ const componentMap = { ContactForm, StringField, CheckboxField };
 const contactForm = new ReactJsonSchema();
 contactForm.setComponentMap(componentMap);
 
-React.render(contactForm.parseSchema(formSchema), document.getElementById('json-react-schema'));
+ReactDOM.render(contactForm.parseSchema(formSchema), document.getElementById('json-react-schema'));

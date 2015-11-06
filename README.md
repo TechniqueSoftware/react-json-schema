@@ -6,6 +6,8 @@ JSX is not a dependency for react-json-schema.
 
 For a quick reference, you can jump to [full example](#putting-it-all-together).
 
+For 0.3.0+, you must use React 0.14.0+. You may use 0.2.0 for older versions.
+
 ### Documentation
 
 #### Schema
@@ -73,14 +75,13 @@ Use `parseSchema` to render React elements. It returns the root node. Note that 
 
 Example (ES6)
 ```js
-/* If using ReactDOM (0.14+), else use React */
 ReactDOM.render(contactForm.parseSchema(schema),
   document.getElementById('contact-form'));
 ```
 
 ##### Rendering
 
-Also note react-json-schema also does not perform any rendering, so the method in which you want to render is up to you. For example, you can use ReactDOMServer.render, ReactDOM.renderToString, etc. if you'd like.
+Also note react-json-schema does not perform any rendering, so the method in which you want to render is up to you. For example, you can use ReactDOMServer.render, ReactDOM.renderToString, etc. if you'd like.
 
 #### Putting it All Together
 
