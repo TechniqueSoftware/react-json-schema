@@ -12,6 +12,10 @@
     "name": "elliottisonfire",
     "url": "http://elliottisonfire.com"
   },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/TechniqueSoftware/react-json-schema"
+  },
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/TechniqueSoftware/react-json-schema/issues"
@@ -41,6 +45,7 @@
     "eslint-config-airbnb": "^0.1.0",
     "eslint-plugin-react": "^3.5.0",
     "file-loader": "^0.8.4",
+    "jasmine": "^2.3.2",
     "jsx-loader": "^0.13.2",
     "path": "^0.12.7",
     "react-bootstrap": "^0.25.2",

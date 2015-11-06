@@ -93,8 +93,22 @@ export default describe('ReactJsonSchema', () => {
       const actual = reactJsonSchema.resolveComponent(schema);
       expect(React.isValidElement(<actual />)).toBe(true);
     });
+    it('should resolve native HTML tags.', () => {
+      spyOn(React, 'createElement');
+      const stringSchema = { component: 'h1' };
+      const actual = reactJsonSchema.parseSchema(stringSchema);
+      expect(React.createElement).toHaveBeenCalledWith(stringSchema.component, jasmine.any(Object), jasmine.any(Array));
+    });
   });
   describe('when resolving component children', () => {
+    it('should resolve text before resolving child components.', () => {
+      spyOn(React, 'createElement');
+      spyOn(reactJsonSchema, 'resolveComponentChildren');
+      const stringSchema = { component: 'h1', text: 'Hello World' };
+      const actual = reactJsonSchema.parseSchema(stringSchema);
+      expect(React.createElement).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(Object), stringSchema.text);
+      expect(reactJsonSchema.resolveComponentChildren).not.toHaveBeenCalled();
+    });
     it('should return an empty array if no child components are present.', () => {
       const actual = reactJsonSchema.resolveComponentChildren(schema);
       expect(Lang.isArray(actual)).toBe(true);

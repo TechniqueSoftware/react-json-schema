@@ -6,7 +6,16 @@ import CheckboxField from './components/CheckboxField';
 // If a package dependency: import ReactJsonSchema from 'react-json-schema';
 import ReactJsonSchema from '../dist/react-json-schema';
 
-const schema = {
+const welcomeSchema = {
+  'component': 'h2',
+  'className': 'text-center',
+  'text': 'Hello World!'
+};
+
+const welcomeBanner = new ReactJsonSchema();
+React.render(welcomeBanner.parseSchema(welcomeSchema), document.getElementById('welcome-banner'));
+
+const formSchema = {
   'component': 'ContactForm',
   'title': 'Tell us a little about yourself, we\'d appreciate it',
   'children': [
@@ -34,4 +43,4 @@ const componentMap = { ContactForm, StringField, CheckboxField };
 const contactForm = new ReactJsonSchema();
 contactForm.setComponentMap(componentMap);
 
-React.render(contactForm.parseSchema(schema), document.getElementById('json-react-schema'));
+React.render(contactForm.parseSchema(formSchema), document.getElementById('json-react-schema'));
