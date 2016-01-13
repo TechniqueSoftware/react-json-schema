@@ -2,11 +2,11 @@
 
 `npm install react-json-schema`
 
-This library builds React elements from JSON by mapping JSON definitions to React components that you expose. The interest behind making this library is to allow non-programmers to construct a view using JSON, which can be stored and retrieved in a database. Use it as you'd like.
+This library constructs React elements from JSON by mapping JSON definitions to React components that you expose.
 
 JSX is not a dependency for react-json-schema.
 
-For a quick reference, you can jump to [full example](#putting-it-all-together).
+For a quick reference, you can jump to the [full example](#putting-it-all-together).
 
 For 0.3.0+, you must use React 0.14.0+. You may use 0.2.0 for older versions.
 
