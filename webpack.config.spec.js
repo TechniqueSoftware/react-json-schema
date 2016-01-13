@@ -1,14 +1,10 @@
-/* eslint "esnext": false */
-
-'use strict';
-
 var path = require('path');
 var srcPath = path.join(__dirname, './spec');
 
 module.exports = {
   entry: {
-    javascript:  path.join(srcPath, 'spec.entry'),
-    html:  path.join(srcPath, 'index.html')
+    javascript: path.join(srcPath, 'spec.entry'),
+    html: path.join(srcPath, 'index.html')
   },
   output: {
     path: srcPath,
@@ -19,12 +15,11 @@ module.exports = {
     loaders: [
       {
         test: /\.js|jsx$/,
-        loader: 'jsx-loader'
-      },
-      {
-        test: /\.js|jsx$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
+        query: {
+          presets: ['react', 'es2015']
+        }
       },
       {
         test: /\.html$/,

@@ -1,26 +1,26 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
 var _react = require('react');
 
-var _node_modulesReactLibReactDOMFactories = require('../node_modules/react/lib/ReactDOMFactories');
+var _ReactDOMFactories = require('react/lib/ReactDOMFactories');
 
-var _node_modulesReactLibReactDOMFactories2 = _interopRequireDefault(_node_modulesReactLibReactDOMFactories);
+var _ReactDOMFactories2 = _interopRequireDefault(_ReactDOMFactories);
 
 var _lodash = require('lodash');
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 var _componentMap = null;
 
-var ReactJsonSchema = (function () {
+var ReactJsonSchema = function () {
   function ReactJsonSchema() {
     _classCallCheck(this, ReactJsonSchema);
   }
@@ -67,7 +67,7 @@ var ReactJsonSchema = (function () {
           Component = schema.component;
         } else if (_componentMap && _componentMap[schema.component]) {
           Component = _componentMap[schema.component];
-        } else if ((0, _lodash.has)(_node_modulesReactLibReactDOMFactories2['default'], schema.component)) {
+        } else if ((0, _lodash.has)(_ReactDOMFactories2.default, schema.component)) {
           Component = schema.component;
         }
       } else {
@@ -93,7 +93,6 @@ var ReactJsonSchema = (function () {
   }]);
 
   return ReactJsonSchema;
-})();
+}();
 
-exports['default'] = ReactJsonSchema;
-module.exports = exports['default'];
+exports.default = ReactJsonSchema;
