@@ -1,7 +1,3 @@
-/* eslint "esnext": false */
-
-'use strict';
-
 module.exports = {
   entry: {
     javascript: './demo/index.jsx',
@@ -14,13 +10,12 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.jsx$/,
-        loader: 'jsx-loader'
-      },
-      {
         test: /\.js|jsx$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
+        query: {
+          presets: ['react', 'es2015']
+        }
       },
       {
         test: /\.html$/,
