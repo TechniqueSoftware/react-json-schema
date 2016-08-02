@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input } from 'react-bootstrap';
+import { FormGroup,Radio } from 'react-bootstrap';
 
 class CheckboxField extends React.Component {
 
@@ -11,7 +11,7 @@ class CheckboxField extends React.Component {
     const checkboxes = [];
     this.props.checkboxes.forEach(function loop(checkbox, index) {
       checkboxes.push(
-        <Input key={index} type="checkbox" label={checkbox.label} {...checkbox} />
+        <Radio key={index} {...checkbox}>{checkbox.label}</Radio>
       );
     });
     return checkboxes;
@@ -20,9 +20,9 @@ class CheckboxField extends React.Component {
   render() {
     const checkboxes = this.renderCheckboxes();
     return (
-      <div className="checkboxes">
+      <FormGroup className="checkboxes">
         {checkboxes}
-      </div>
+      </FormGroup>
     );
   }
 }

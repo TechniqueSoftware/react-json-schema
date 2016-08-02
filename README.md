@@ -117,7 +117,7 @@ To run the demo
 
 Please use a linter that recognizes eslint rules
 * `npm install`
-* `npm test` (Jasmine's test report will output in /spec/index.html)
+* `npm test`
 * `npm run build`
 
 ### Roadmap

@@ -23,9 +23,15 @@
   "scripts": {
     "prebuild": "rm -rf dist && mkdir dist",
     "build": "babel lib/ReactJsonSchema.js -o dist/react-json-schema.js",
-    "postbuild": "node_modules/uglify-js/bin/uglifyjs dist/react-json-schema.js -o dist/react-json-schema.min.js",
+    "postbuild": "node_modules/uglify-js/bin/uglifyjs dist/react-json-schema.js -o dist/react-json-schema.min.js -m --stats",
     "demo": "webpack-dev-server --progress --colors --inline --config webpack.config.demo.js",
-    "test": "webpack --progress --profile --colors --config webpack.config.spec.js"
+    "jasmine": "jasmine spec/spec.js",
+    "jasmine-strict": "jasmine spec/spec.js",
+    "pretest": "webpack --progress --profile --colors --config webpack.config.spec.js",
+    "test": "npm run jasmine",
+    "preversion": "npm run jasmine-strict",
+    "version": "npm run build && git add -A",
+    "postversion": "git push origin master && git push origin --tags"
   },
   "main": "dist/react-json-schema.js",
   "files": [
@@ -33,27 +39,30 @@
     "dist"
   ],
   "dependencies": {
-    "lodash": "^3.10.1",
-    "react": "^0.14.2"
+    "react": "^15.3.0"
   },
   "devDependencies": {
     "babel-cli": "^6.4.0",
     "babel-core": "^6.4.0",
-    "babel-eslint": "^4.1.3",
-    "babel-loader": "6.1.0",
-    "babel-preset-es2015": "6.1.18",
-    "babel-preset-react": "6.1.18",
+    "babel-eslint": "^6.1.2",
+    "babel-loader": "6.2.4",
+    "babel-plugin-transform-es2015-destructuring": "^6.9.0",
+    "babel-plugin-transform-object-rest-spread": "^6.8.0",
+    "babel-preset-es2015": "6.9.0",
+    "babel-preset-react": "6.11.1",
     "bootstrap": "^3.3.5",
-    "eslint": "^1.5.1",
-    "eslint-config-airbnb": "^0.1.0",
-    "eslint-plugin-react": "^3.5.0",
+    "eslint": "^2.9.0",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-plugin-import": "^1.7.0",
+    "eslint-plugin-jsx-a11y": "^1.2.0",
+    "eslint-plugin-react": "^5.2.2",
     "file-loader": "^0.8.4",
     "jasmine": "^2.3.2",
     "jsx-loader": "^0.13.2",
     "path": "^0.12.7",
-    "react-bootstrap": "^0.27.3",
-    "react-dom": "^0.14.2",
-    "uglify-js": "^2.4.24",
+    "react-bootstrap": "^0.30.0",
+    "react-dom": "^15.3.0",
+    "uglify-js": "^2.7.0",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.0"
   }

@@ -22,6 +22,7 @@ const formSchema = {
     {
       'component': 'StringField',
       'label': 'What\'s your name',
+      'name': 'fullname',
       'help': 'It\'s okay, don\'t be shy :)'
     },
     {
