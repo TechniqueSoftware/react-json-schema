@@ -1,8 +1,0 @@
-// No to trailing comma rule
-{
-  "extends": "airbnb",
-  "rules": {
-    "comma-dangle": 0,
-    "id-length": [1, { "exceptions": ["_"] }]
-  }
-}
