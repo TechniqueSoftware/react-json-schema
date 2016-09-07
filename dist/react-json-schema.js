@@ -8,12 +8,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _react = require('react');
 
-var _ReactDOMFactories = require('react/lib/ReactDOMFactories');
-
-var _ReactDOMFactories2 = _interopRequireDefault(_ReactDOMFactories);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -95,7 +89,7 @@ var ReactJsonSchema = function () {
           Component = schema.component;
         } else if (_componentMap && _componentMap[schema.component]) {
           Component = _componentMap[schema.component];
-        } else if (_ReactDOMFactories2.default.hasOwnProperty(schema.component)) {
+        } else if (_react.DOM.hasOwnProperty(schema.component)) {
           Component = schema.component;
         }
       } else {
