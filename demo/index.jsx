@@ -30,10 +30,12 @@ const formSchema = {
       'checkboxes': [
         {
           'label': 'I\'m already checked!',
-          'defaultChecked': true
+          'defaultChecked': true,
+          'key': 0
         },
         {
-          'label': 'Here\'s another'
+          'label': 'Here\'s another',
+          'key': 10
         }
       ]
     }

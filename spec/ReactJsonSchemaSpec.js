@@ -1,4 +1,5 @@
 /* global jasmine, beforeEach, describe, it, expect, fail, spyOn */
+/* eslint max-len: 0 */
 
 import React from 'react';
 import ReactJsonSchema from '../lib/ReactJsonSchema';
@@ -7,18 +8,18 @@ let reactJsonSchema;
 let schema;
 
 export default describe('ReactJsonSchema', () => {
-  const Tester = React.createClass({
-    render: () => {
-      return React.createElement('h1', null, 'Tester!!!!');
-    }
+  const Tester = React.createClass({ // eslint-disable-line
+    render: () => React.createElement('h1', null, 'Tester!!!!')
   });
 
   beforeEach(() => {
     reactJsonSchema = new ReactJsonSchema();
+    /* eslint-disable */
     schema = {
-      'component': Tester,
-      'someProp': 'I\'m a tester'
+      "component": Tester,
+      "someProp": "I'm a tester"
     };
+    /* eslint-enable */
   });
   describe('when parsing schema', () => {
     it('should return an array of React elements when schema\'s root type is of type array.', () => {
@@ -48,6 +49,15 @@ export default describe('ReactJsonSchema', () => {
       spyOn(reactJsonSchema, 'parseSchema');
       reactJsonSchema.parseSubSchemas(subSchemas);
       expect(reactJsonSchema.parseSchema).toHaveBeenCalled();
+    });
+    it('should consume a key defined in the schema\'s keys for the current sub-schema based on the current sub-schema\'s index to meet React\'s key expectation of multiple React elements.', () => {
+      const schemaClone = Object.assign({}, schema);
+      const subSchemas = [schemaClone, schemaClone];
+      for (const subSchema of subSchemas) { subSchema.key = Math.random(); }
+      spyOn(reactJsonSchema, 'parseSchema');
+      reactJsonSchema.parseSubSchemas(subSchemas);
+      expect(reactJsonSchema.parseSchema).toHaveBeenCalledWith(subSchemas[0]);
+      expect(reactJsonSchema.parseSchema).toHaveBeenCalledWith(subSchemas[1]);
     });
     it('should assign a key to the current sub-schema based on the current sub-schema\'s index to meet React\'s key expectation of multiple React elements.', () => {
       spyOn(reactJsonSchema, 'parseSchema');
