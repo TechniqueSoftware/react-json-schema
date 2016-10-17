@@ -6,11 +6,15 @@ This library constructs React elements from JSON by mapping JSON definitions to 
 
 JSX is not a dependency for react-json-schema.
 
-For a quick reference, you can jump to the [full example](#putting-it-all-together).
+[Quick Documentation](http://techniquesoftware.github.io/react-json-schema/)
 
-For 0.3.0+, you must use React 0.14.0+. You may use 0.2.0 for older versions.
+### Full Documentation
 
-### Documentation
+* [Schema](#schema)
+* [Dynamic Children and Keys](#dynamic-children-and-keys)
+* [Component Mapping](#component-mapping)
+* [Rendering](#rendering)
+* [Complete Example](#complete-example)
 
 #### Schema
 
@@ -18,48 +22,58 @@ The primary resource needed is a defined schema in JSON or a JavaScript object l
 - **component**: _MUST_ exist and be defined by a string or React component (must be a string if describing a native HTML tag)
 - **children**: _MAY_ exist to define sub-components
 - **text**: _MAY_ exist to as a string to define inner HTML text (overrides children)
+- **key**: _MAY_ exist to define a key for dynamic children
 
 Example JSON schema (ES6)
 ```js
 const schema = {
-  "component": "ContactForm",
-  "title": "Tell us a little about yourself...",
+  "component": "CommentList",
   "children": [
     {
-      "component": "StringField",
-      "label": "What's your name?"
+      "component": "Comment",
+      "author": "Pete Hunt",
+      "children": "This is one comment"
+    },
+    {
+      "component": "Comment",
+      "author": "Jordan Walke",
+      "children": "This is *another* comment"
     },
     {
       "component": "a",
-      "href": "#faq",
-      "text": "I'm not sure why I'm filling this out"
+      "href": "#help",
+      "text": "I need help"
     }
   ]
-}
+};
 ```
 
 Example JS literal (ES6)
 ```js
-const schema = {
-  "component": ContactForm,
-  "title": "Tell us a little about yourself...",
-  "children": [
-    {
-      "component": StringField,
-      "label": "What's your name?"
-    },
-    {
-      "component": "a",
-      "href": "#faq",
-      "text": "I'm not sure why I'm filling this out"
-    }
-  ]
-}
+...
+  {
+    "component": Comment, // literal
+    "author": "Pete Hunt",
+    "children": "This is one comment"
+  },
+...
 ```
 
 ##### Dynamic Children and Keys
 
-When arrays of components exist (like children), react-json-schema will resolve a key for the element based on the array index, which follows the rules for [dynamic children](https://facebook.github.io/react/docs/multiple-components.html#dynamic-children). Custom keys cannot be defined at this time.
+When arrays of components exist (like children), react-json-schema will resolve a key for the element, which follows the rules for [dynamic children](https://facebook.github.io/react/docs/multiple-components.html#dynamic-children). It will either use a custom key if defined, or resolve a numeric key based on the array index.
+
+Example of defining child keys (ES6)
+```js
+...
+  {
+    "component": "Comment",
+    "key": "0ab19f8e", // defined key
+    "author": "Pete Hunt",
+    "children": "This is one comment"
+  },
+...
+```
 
 #### Component Mapping
 
@@ -83,27 +97,26 @@ ReactDOM.render(contactForm.parseSchema(schema),
 
 ##### Rendering
 
-Also note react-json-schema does not perform any rendering, so the method in which you want to render is up to you. For example, you can use ReactDOMServer.render, ReactDOM.renderToString, etc. if you'd like.
+Since react-json-schema does not perform any rendering, the method in which you want to render is up to you. For example, you can use ReactDOMServer.render, ReactDOM.renderToString, etc. if you'd like.
 
-#### Putting it All Together
+#### Complete Example
 
 ```js
 import ReactDOM from 'react-dom';
 import ReactJsonSchema from 'react-json-schema';
 
-import FormStore from './stores/FormStore';
-import ContactForm from './components/ContactForm';
-import StringField from './components/StringField';
+import FormStore from 'FormStore';
+import CommentList from 'CommentList';
+import Comment from 'Comment';
 
 // For this example, let's pretend I already have data and am ignorant of actions
 const schema = FormStore.getFormSchema();
-const componentMap = { ContactForm, StringField }
+const view = new ReactJsonSchema();
 
-const contactForm = new ReactJsonSchema();
-contactForm.setComponentMap(componentMap);
+view.setComponentMap({ CommentList, Comment });
 
-ReactDOM.render(contactForm.parseSchema(schema),
-  document.getElementById('contact-form'));
+ReactDOM.render(view.parseSchema(schema),
+  document.getElementById('content'));
 ```
 
 ### Try the Demo
@@ -122,4 +135,4 @@ Please use a linter that recognizes eslint rules
 
 ### Roadmap
 
-* Support custom keys for children
+* Possibility of react-native-json-schema

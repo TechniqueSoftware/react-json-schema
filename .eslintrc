@@ -2,7 +2,6 @@
 {
   "extends": "airbnb",
   "rules": {
-    "comma-dangle": 0,
-    "id-length": [1, { "exceptions": ["_"] }]
+    "comma-dangle": 0
   }
 }
