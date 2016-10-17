@@ -46,7 +46,7 @@ var ReactJsonSchema = function () {
         for (var _iterator = subSchemas[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
           var subSchema = _step.value;
 
-          subSchema.key = index;
+          subSchema.key = typeof subSchema.key !== 'undefined' ? subSchema.key : index;
           Components.push(this.parseSchema(subSchema));
           index++;
         }
