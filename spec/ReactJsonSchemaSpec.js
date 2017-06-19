@@ -131,4 +131,16 @@ export default describe('ReactJsonSchema', () => {
       expect(!!actual.length).toBe(true);
     });
   });
+  describe('when multiple instances of ReactJsonSchema are created with different componentMaps', () => {
+    it('getComponentMap() should return the appropriate value for each instance', () => {
+      const reactJsonSchema1 = new ReactJsonSchema();
+      const componentMap1 = { component1: Tester };
+      reactJsonSchema1.setComponentMap(componentMap1);
+      const reactJsonSchema2 = new ReactJsonSchema();
+      const componentMap2 = { component2: Tester };
+      reactJsonSchema2.setComponentMap(componentMap2);
+      expect(reactJsonSchema1.getComponentMap()).toEqual(componentMap1);
+      expect(reactJsonSchema2.getComponentMap()).toEqual(componentMap2);
+    });
+  });
 });
