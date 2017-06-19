@@ -12,11 +12,11 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+var _componentMap = new WeakMap();
+
 var ReactJsonSchema = function () {
   function ReactJsonSchema() {
     _classCallCheck(this, ReactJsonSchema);
-
-    this._componentMap = null;
   }
 
   _createClass(ReactJsonSchema, [{
@@ -82,7 +82,7 @@ var ReactJsonSchema = function () {
   }, {
     key: 'resolveComponent',
     value: function resolveComponent(schema) {
-      var _componentMap = this._componentMap;
+      var _componentMap = this.getComponentMap();
       var Component = null;
       if (schema.hasOwnProperty('component')) {
         if (schema.component === Object(schema.component)) {
@@ -105,12 +105,12 @@ var ReactJsonSchema = function () {
   }, {
     key: 'getComponentMap',
     value: function getComponentMap() {
-      return this._componentMap;
+      return _componentMap.get(this);
     }
   }, {
     key: 'setComponentMap',
     value: function setComponentMap(componentMap) {
-      this._componentMap = componentMap;
+      _componentMap.set(this, componentMap);
     }
   }]);
 
