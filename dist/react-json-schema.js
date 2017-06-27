@@ -82,13 +82,13 @@ var ReactJsonSchema = function () {
   }, {
     key: 'resolveComponent',
     value: function resolveComponent(schema) {
-      var _componentMap = this.getComponentMap();
+      var componentMap = this.getComponentMap();
       var Component = null;
       if (schema.hasOwnProperty('component')) {
         if (schema.component === Object(schema.component)) {
           Component = schema.component;
-        } else if (_componentMap && _componentMap[schema.component]) {
-          Component = _componentMap[schema.component];
+        } else if (componentMap && componentMap[schema.component]) {
+          Component = componentMap[schema.component];
         } else if (_react.DOM.hasOwnProperty(schema.component)) {
           Component = schema.component;
         }
