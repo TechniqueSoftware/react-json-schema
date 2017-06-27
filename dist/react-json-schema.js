@@ -12,7 +12,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var _componentMap = null;
+var _componentMap = new WeakMap();
 
 var ReactJsonSchema = function () {
   function ReactJsonSchema() {
@@ -34,7 +34,7 @@ var ReactJsonSchema = function () {
   }, {
     key: 'parseSubSchemas',
     value: function parseSubSchemas() {
-      var subSchemas = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
+      var subSchemas = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 
       var Components = [];
       var index = 0;
@@ -70,11 +70,10 @@ var ReactJsonSchema = function () {
   }, {
     key: 'createComponent',
     value: function createComponent(schema) {
-      var component = schema.component;
-      var children = schema.children;
-      var text = schema.text;
-
-      var rest = _objectWithoutProperties(schema, ['component', 'children', 'text']);
+      var component = schema.component,
+          children = schema.children,
+          text = schema.text,
+          rest = _objectWithoutProperties(schema, ['component', 'children', 'text']);
 
       var Component = this.resolveComponent(schema);
       var Children = typeof text !== 'undefined' ? text : this.resolveComponentChildren(schema);
@@ -83,6 +82,7 @@ var ReactJsonSchema = function () {
   }, {
     key: 'resolveComponent',
     value: function resolveComponent(schema) {
+      var _componentMap = this.getComponentMap();
       var Component = null;
       if (schema.hasOwnProperty('component')) {
         if (schema.component === Object(schema.component)) {
@@ -105,12 +105,12 @@ var ReactJsonSchema = function () {
   }, {
     key: 'getComponentMap',
     value: function getComponentMap() {
-      return _componentMap;
+      return _componentMap.get(this);
     }
   }, {
     key: 'setComponentMap',
     value: function setComponentMap(componentMap) {
-      _componentMap = componentMap;
+      _componentMap.set(this, componentMap);
     }
   }]);
 
