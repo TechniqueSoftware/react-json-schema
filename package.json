@@ -1,5 +1,5 @@
 {
-  "name": "react-json-schema",
+  "name": "@sunfmin/react-json-schema",
   "version": "1.0.1",
   "description": "Write component schema in JSON; parse to create react elements.",
   "keywords": [
