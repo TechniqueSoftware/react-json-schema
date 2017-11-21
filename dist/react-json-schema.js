@@ -76,6 +76,9 @@ var ReactJsonSchema = function () {
           rest = _objectWithoutProperties(schema, ['component', 'children', 'text']);
 
       var Component = this.resolveComponent(schema);
+      if (children === undefined && text === undefined) {
+        return (0, _react.createElement)(Component, rest);
+      }
       var Children = typeof text !== 'undefined' ? text : this.resolveComponentChildren(schema);
       return (0, _react.createElement)(Component, rest, Children);
     }
