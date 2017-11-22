@@ -106,7 +106,7 @@ export default describe('ReactJsonSchema', () => {
       spyOn(React, 'createElement');
       const stringSchema = { component: 'h1' };
       reactJsonSchema.parseSchema(stringSchema);
-      expect(React.createElement).toHaveBeenCalledWith(stringSchema.component, jasmine.any(Object), jasmine.any(Array));
+      expect(React.createElement).toHaveBeenCalledWith(stringSchema.component, jasmine.any(Object), undefined);
     });
   });
   describe('when resolving component children', () => {
@@ -118,10 +118,9 @@ export default describe('ReactJsonSchema', () => {
       expect(React.createElement).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(Object), stringSchema.text);
       expect(reactJsonSchema.resolveComponentChildren).not.toHaveBeenCalled();
     });
-    it('should return an empty array if no child components are present.', () => {
+    it('should return undefined if no child components are present.', () => {
       const actual = reactJsonSchema.resolveComponentChildren(schema);
-      expect(Array.isArray(actual)).toBe(true);
-      expect(!!actual.length).toBe(false);
+      expect(typeof actual === 'undefined').toBe(true);
     });
     it('should return an array with child components if the children attribute is defined by valid sub-schemas.', () => {
       const largeSchema = Object.assign({}, schema);
