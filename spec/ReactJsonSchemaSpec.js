@@ -22,6 +22,11 @@ export default describe('ReactJsonSchema', () => {
     /* eslint-enable */
   });
   describe('when parsing schema', () => {
+    it('should allow children to have a null value', () => {
+      const component = reactJsonSchema.parseSchema({ component: 'input', children: null, value: 'test' });
+      expect(React.isValidElement(<component />)).toBe(true);
+    });
+
     it('should return an array of React elements when schema\'s root type is of type array.', () => {
       const actual = reactJsonSchema.parseSchema([schema]);
       expect(Array.isArray(actual)).toBe(true);
@@ -87,7 +92,7 @@ export default describe('ReactJsonSchema', () => {
       expect(React.createElement).toHaveBeenCalledWith(jasmine.any(Function), { someProp: schema.someProp }, jasmine.any(Array));
     });
   });
-  describe('when resolving components (evaluting schema for mapping requirements)', () => {
+  describe('when resolving components (evaluating schema for mapping requirements)', () => {
     it('should throw an error when a schema element does not have a component attribute.', () => {
       expect(reactJsonSchema.resolveComponent).toThrowError();
     });
