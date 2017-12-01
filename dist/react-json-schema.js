@@ -26,7 +26,7 @@ var ReactJsonSchema = function () {
       var elements = null;
       if (Array.isArray(schema)) {
         elements = this.parseSubSchemas(schema);
-      } else {
+      } else if (schema) {
         element = this.createComponent(schema);
       }
       return element || elements;
@@ -100,7 +100,7 @@ var ReactJsonSchema = function () {
   }, {
     key: 'resolveComponentChildren',
     value: function resolveComponentChildren(schema) {
-      return schema.hasOwnProperty('children') ? this.parseSchema(schema.children) : [];
+      return schema.hasOwnProperty('children') ? this.parseSchema(schema.children) : undefined;
     }
   }, {
     key: 'getComponentMap',
