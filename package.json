@@ -1,6 +1,6 @@
 {
   "name": "react-json-schema",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Write component schema in JSON; parse to create react elements.",
   "keywords": [
     "react",
