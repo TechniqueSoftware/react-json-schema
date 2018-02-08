@@ -12,7 +12,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var _componentMap = new WeakMap();
+var componentMapCollection = new WeakMap();
 
 var ReactJsonSchema = function () {
   function ReactJsonSchema() {
@@ -34,42 +34,24 @@ var ReactJsonSchema = function () {
   }, {
     key: 'parseSubSchemas',
     value: function parseSubSchemas() {
+      var _this = this;
+
       var subSchemas = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 
       var Components = [];
       var index = 0;
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
-
-      try {
-        for (var _iterator = subSchemas[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var subSchema = _step.value;
-
-          subSchema.key = typeof subSchema.key !== 'undefined' ? subSchema.key : index;
-          Components.push(this.parseSchema(subSchema));
-          index++;
-        }
-      } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion && _iterator.return) {
-            _iterator.return();
-          }
-        } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
-          }
-        }
-      }
-
+      Object.keys(subSchemas).forEach(function (key) {
+        var subSchema = subSchemas[key];
+        subSchema.key = typeof subSchema.key !== 'undefined' ? subSchema.key : index;
+        Components.push(_this.parseSchema(subSchema));
+        index++;
+      });
       return Components;
     }
   }, {
     key: 'createComponent',
     value: function createComponent(schema) {
+      // eslint-disable-next-line no-unused-vars
       var component = schema.component,
           children = schema.children,
           text = schema.text,
@@ -93,7 +75,7 @@ var ReactJsonSchema = function () {
           Component = schema.component;
         }
       } else {
-        throw new Error('ReactJsonSchema could not resolve a component due to a missing component attribute in the schema.');
+        throw new Error('ReactJsonSchema could not resolve a component due to a missing component \n          attribute in the schema.');
       }
       return Component;
     }
@@ -105,12 +87,12 @@ var ReactJsonSchema = function () {
   }, {
     key: 'getComponentMap',
     value: function getComponentMap() {
-      return _componentMap.get(this);
+      return componentMapCollection.get(this);
     }
   }, {
     key: 'setComponentMap',
     value: function setComponentMap(componentMap) {
-      _componentMap.set(this, componentMap);
+      componentMapCollection.set(this, componentMap);
     }
   }]);
 
