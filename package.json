@@ -1,6 +1,6 @@
 {
   "name": "react-json-schema",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Write component schema in JSON; parse to create react elements.",
   "keywords": [
     "react",
@@ -9,8 +9,8 @@
     "components"
   ],
   "author": {
-    "name": "elliottisonfire",
-    "url": "http://elliottisonfire.com"
+    "name": "A collaborative project overseen by Club OS",
+    "url": "https://club-os.com/"
   },
   "repository": {
     "type": "git",
