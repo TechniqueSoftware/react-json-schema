@@ -38,8 +38,11 @@
     "lib",
     "dist"
   ],
+  "engines": {
+    "node": ">=6.4.0"
+  },
   "peerDependencies": {
-    "react": "^16.2.0"
+    "react": ">=15"
   },
   "devDependencies": {
     "babel-cli": "^6.4.0",
