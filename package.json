@@ -39,7 +39,7 @@
     "dist"
   ],
   "peerDependencies": {
-    "react": "^15.3.0"
+    "react": "^16.2.0"
   },
   "devDependencies": {
     "babel-cli": "^6.4.0",
@@ -60,11 +60,13 @@
     "jasmine": "^2.3.2",
     "jsx-loader": "^0.13.2",
     "path": "^0.12.7",
-    "react-bootstrap": "^0.30.0",
-    "react-dom": "^15.3.0",
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
+    "react-bootstrap": "^0.31.5",
+    "react-dom": "^16.2.0",
+    "react-dom-factories": "^1.0.2",
     "uglify-js": "^2.7.0",
     "webpack": "^1.12.2",
-    "webpack-dev-server": "^1.12.0",
-    "react": "^15.3.0"
+    "webpack-dev-server": "^1.12.0"
   }
 }

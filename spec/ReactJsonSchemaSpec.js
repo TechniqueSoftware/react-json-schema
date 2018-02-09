@@ -8,9 +8,11 @@ let reactJsonSchema;
 let schema;
 
 export default describe('ReactJsonSchema', () => {
-  const Tester = React.createClass({ // eslint-disable-line
-    render: () => React.createElement('h1', null, 'Tester!!!!')
-  });
+  class  Tester extends React.Component{ // eslint-disable-line
+    render() {
+      React.createElement('h1', null, 'Tester!!!!');
+    }
+  };
 
   beforeEach(() => {
     reactJsonSchema = new ReactJsonSchema();
