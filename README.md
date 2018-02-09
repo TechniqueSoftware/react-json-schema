@@ -24,7 +24,7 @@ The primary resource needed is a defined schema in JSON or a JavaScript object l
 - **text**: _MAY_ exist to as a string to define inner HTML text (overrides children)
 - **key**: _MAY_ exist to define a key for dynamic children
 
-Example JSON schema (ES6)
+Example JSON schema
 ```js
 const schema = {
   "component": "CommentList",
@@ -48,11 +48,11 @@ const schema = {
 };
 ```
 
-Example JS literal (ES6)
+Example JS literal
 ```js
 ...
   {
-    "component": Comment, // literal
+    "component": Comment,
     "author": "Pete Hunt",
     "children": "This is one comment"
   },
@@ -63,7 +63,7 @@ Example JS literal (ES6)
 
 When arrays of components exist (like children), react-json-schema will resolve a key for the element, which follows the rules for [dynamic children](https://facebook.github.io/react/docs/multiple-components.html#dynamic-children). It will either use a custom key if defined, or resolve a numeric key based on the array index.
 
-Example of defining child keys (ES6)
+Example of defining child keys
 ```js
 ...
   {
@@ -128,11 +128,9 @@ To run the demo
 
 ### Contribution and Code of Conduct
 
-Please use a linter that recognizes eslint rules
-* `npm install`
-* `npm test`
-* `npm run build`
+If you'd like to ask a question, raise a concern, or contribute, please follow our [contribution guidelines](CONTRIBUTE.md).
 
 ### Roadmap
 
+* Playground on our public site for discoverability
 * Possibility of react-native-json-schema

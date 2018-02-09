@@ -1,6 +1,6 @@
 {
   "name": "react-json-schema",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Write component schema in JSON; parse to create react elements.",
   "keywords": [
     "react",
@@ -9,8 +9,8 @@
     "components"
   ],
   "author": {
-    "name": "elliottisonfire",
-    "url": "http://elliottisonfire.com"
+    "name": "A collaborative project overseen by Club OS",
+    "url": "https://club-os.com/"
   },
   "repository": {
     "type": "git",
@@ -51,10 +51,10 @@
     "babel-preset-es2015": "6.9.0",
     "babel-preset-react": "6.11.1",
     "bootstrap": "^3.3.5",
-    "eslint": "^2.9.0",
+    "eslint": "^2.13.1",
     "eslint-config-airbnb": "^9.0.1",
     "eslint-plugin-import": "^1.7.0",
-    "eslint-plugin-jsx-a11y": "^1.2.0",
+    "eslint-plugin-jsx-a11y": "^1.5.5",
     "eslint-plugin-react": "^5.2.2",
     "file-loader": "^0.8.4",
     "jasmine": "^2.3.2",
