@@ -1,17 +1,19 @@
 const path = require('path');
-const srcPath = path.join(__dirname, './spec');
 
 module.exports = {
-  entry: path.join(srcPath, 'spec.entry'),
+  entry: path.join(__dirname, 'index.jsx'),
   output: {
-    path: srcPath,
-    filename: 'spec.js'
+    filename: 'bundle.js',
+    path: path.join(__dirname, 'build')
   },
   module: {
     rules: [
       {
-        test: /\.js$/,
-        exclude: /node_modules/,
+        test: /\.(js|jsx)$/,
+        exclude: [
+          path.join(__dirname, '../dist'),
+          /node_modules/
+        ],
         use: [{
           loader: 'babel-loader',
           options: {
@@ -24,9 +26,10 @@ module.exports = {
   },
   resolve: {
     modules: [
-      path.join(__dirname, 'spec'),
-      path.join(__dirname, 'lib'),
+      path.join(__dirname, '../lib'),
+      path.join(__dirname, '../dist'),
       'node_modules'
-    ]
+    ],
+    extensions: ['.js', '.json', '.jsx']
   }
 };

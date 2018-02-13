@@ -1,4 +1,4 @@
-/* global jasmine, beforeEach, describe, it, expect, fail, spyOn */
+/* global jasmine, beforeEach, describe, it, expect, spyOn */
 /* eslint max-len: 0 */
 
 import React from 'react';

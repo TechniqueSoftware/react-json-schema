@@ -21,15 +21,11 @@
     "url": "https://github.com/TechniqueSoftware/react-json-schema/issues"
   },
   "scripts": {
-    "prebuild": "rm -rf dist && mkdir dist",
-    "build": "babel lib/ReactJsonSchema.js -o dist/react-json-schema.js",
-    "postbuild": "node_modules/uglify-js/bin/uglifyjs dist/react-json-schema.js -o dist/react-json-schema.min.js -m --stats",
-    "demo": "webpack-dev-server --progress --colors --inline --config webpack.config.demo.js",
-    "jasmine": "jasmine spec/spec.js",
-    "jasmine-strict": "jasmine spec/spec.js",
-    "pretest": "webpack --progress --profile --colors --config webpack.config.spec.js",
+    "build": "eslint lib/ReactJsonSchema.js && webpack --progress --profile --colors --config webpack.config.dist.js",
+    "jasmine": "eslint lib/ReactJsonSchema.js && jasmine spec/spec.js",
+    "pretest": "eslint lib/ReactJsonSchema.js && webpack --progress --profile --colors --config webpack.config.spec.js",
     "test": "npm run jasmine",
-    "preversion": "npm run jasmine-strict",
+    "preversion": "npm run jasmine",
     "version": "npm run build && git add -A",
     "postversion": "git push origin master && git push origin --tags"
   },
@@ -42,34 +38,28 @@
     "node": ">=6.4.0"
   },
   "peerDependencies": {
-    "react": ">=15"
+    "react": ">=15",
+    "react-dom-factories": ">=1"
   },
   "devDependencies": {
-    "babel-cli": "^6.4.0",
-    "babel-core": "^6.4.0",
-    "babel-eslint": "^6.1.2",
-    "babel-loader": "6.2.4",
-    "babel-plugin-transform-es2015-destructuring": "^6.9.0",
-    "babel-plugin-transform-object-rest-spread": "^6.8.0",
-    "babel-preset-es2015": "6.9.0",
-    "babel-preset-react": "6.11.1",
-    "bootstrap": "^3.3.5",
-    "eslint": "^2.13.1",
-    "eslint-config-airbnb": "^9.0.1",
-    "eslint-plugin-import": "^1.7.0",
-    "eslint-plugin-jsx-a11y": "^1.5.5",
-    "eslint-plugin-react": "^5.2.2",
-    "file-loader": "^0.8.4",
-    "jasmine": "^2.3.2",
-    "jsx-loader": "^0.13.2",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.1",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-es2015-destructuring": "^6.23.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.18",
+    "eslint": "^4.17.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.6.1",
+    "jasmine": "^2.99.0",
     "path": "^0.12.7",
-    "prop-types": "^15.6.0",
     "react": "^16.2.0",
-    "react-bootstrap": "^0.31.5",
-    "react-dom": "^16.2.0",
     "react-dom-factories": "^1.0.2",
-    "uglify-js": "^2.7.0",
-    "webpack": "^1.12.2",
-    "webpack-dev-server": "^1.12.0"
+    "uglifyjs-webpack-plugin": "^1.1.8",
+    "webpack": "^3.11.0"
   }
 }
