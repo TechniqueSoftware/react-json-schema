@@ -58,8 +58,7 @@ export default describe('ReactJsonSchema', () => {
       expect(reactJsonSchema.parseSchema).toHaveBeenCalled();
     });
     it('should consume a key defined in the schema\'s keys for the current sub-schema based on the current sub-schema\'s index to meet React\'s key expectation of multiple React elements.', () => {
-      const schemaClone = Object.assign({}, schema);
-      const subSchemas = [schemaClone, schemaClone];
+      const subSchemas = [Object.assign({}, schema), Object.assign({}, schema)];
       for (const subSchema of subSchemas) { subSchema.key = Math.random(); }
       spyOn(reactJsonSchema, 'parseSchema');
       reactJsonSchema.parseSubSchemas(subSchemas);
@@ -68,10 +67,12 @@ export default describe('ReactJsonSchema', () => {
     });
     it('should assign a key to the current sub-schema based on the current sub-schema\'s index to meet React\'s key expectation of multiple React elements.', () => {
       spyOn(reactJsonSchema, 'parseSchema');
-      const schemaClone = Object.assign({}, schema);
-      reactJsonSchema.parseSubSchemas([schemaClone]);
-      schemaClone.key = 0;
-      expect(reactJsonSchema.parseSchema).toHaveBeenCalledWith(schemaClone);
+      const subSchemas = [Object.assign({}, schema), Object.assign({}, schema)];
+      reactJsonSchema.parseSubSchemas(subSchemas);
+      const firstSubSchema = Object.assign({}, subSchemas[0], { key: 0 });
+      const secondSubSchema = Object.assign({}, subSchemas[1], { key: 1 });
+      expect(reactJsonSchema.parseSchema).toHaveBeenCalledWith(firstSubSchema);
+      expect(reactJsonSchema.parseSchema).toHaveBeenCalledWith(secondSubSchema);
     });
   });
   describe('when creating components', () => {

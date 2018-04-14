@@ -31,6 +31,20 @@ module.exports = {
       }
     ]
   },
+  externals: {
+    react: {
+      root: 'React',
+      commonjs2: 'react',
+      commonjs: 'react',
+      amd: 'react'
+    },
+    'react-dom-factories': {
+      root: 'DOM',
+      commonjs2: 'react-dom-factories',
+      commonjs: 'react-dom-factories',
+      amd: 'react-dom-factories'
+    }
+  },
   resolve: {
     modules: [
       path.join(__dirname, 'lib'),
