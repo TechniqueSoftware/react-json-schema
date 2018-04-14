@@ -38,8 +38,7 @@
     "node": ">=6.4.0"
   },
   "peerDependencies": {
-    "react": ">=15",
-    "react-dom-factories": ">=1"
+    "react": ">=15"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -58,8 +57,10 @@
     "jasmine": "^2.99.0",
     "path": "^0.12.7",
     "react": "^16.2.0",
-    "react-dom-factories": "^1.0.2",
     "uglifyjs-webpack-plugin": "^1.1.8",
     "webpack": "^3.11.0"
+  },
+  "dependencies": {
+    "react-dom-factories": "^1.0.2"
   }
 }
