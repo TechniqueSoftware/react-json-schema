@@ -1,0 +1,35 @@
+{
+  "name": "react-json-schema-demo",
+  "version": "1.0.0",
+  "description": "Need to test ReactJsonSchema in the wild? This is where you'd do it.",
+  "author": {
+    "name": "A collaborative project overseen by Club OS",
+    "url": "https://club-os.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TechniqueSoftware/react-json-schema"
+  },
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/TechniqueSoftware/react-json-schema/issues"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --progress --colors --inline"
+  },
+  "engines": {
+    "node": ">=6.4.0"
+  },
+  "devDependencies": {
+    "ajv": "^6.1.1",
+    "bootstrap": "^3.3.7",
+    "file-loader": "^1.1.6",
+    "path": "^0.12.7",
+    "prop-types": "^15.6.0",
+    "react": "^15.6.2",
+    "react-bootstrap": "^0.32.1",
+    "react-dom": "^16.2.0",
+    "webpack": "^3.11.0",
+    "webpack-dev-server": "^2.11.1"
+  }
+}

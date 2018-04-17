@@ -2,9 +2,9 @@
 
 `npm install react-json-schema`
 
-This library constructs React elements from JSON by mapping JSON definitions to React components that you expose.
+Construct React elements from JSON by mapping JSON definitions to React components that you expose.
 
-JSX is not a dependency for react-json-schema.
+Render anywhere (as long as it's DOM)! Since react-json-schema does not perform any rendering, the method in which you want to render is up to you. For example, you can use ReactDOMServer.render, ReactDOM.renderToString, etc. if you'd like. This also means JSX is not a dependency for react-json-schema.
 
 [Quick Documentation](http://techniquesoftware.github.io/react-json-schema/)
 
@@ -13,7 +13,6 @@ JSX is not a dependency for react-json-schema.
 * [Schema](#schema)
 * [Dynamic Children and Keys](#dynamic-children-and-keys)
 * [Component Mapping](#component-mapping)
-* [Rendering](#rendering)
 * [Complete Example](#complete-example)
 
 #### Schema
@@ -95,10 +94,6 @@ ReactDOM.render(contactForm.parseSchema(schema),
   document.getElementById('contact-form'));
 ```
 
-##### Rendering
-
-Since react-json-schema does not perform any rendering, the method in which you want to render is up to you. For example, you can use ReactDOMServer.render, ReactDOM.renderToString, etc. if you'd like.
-
 #### Complete Example
 
 ```js
@@ -119,11 +114,11 @@ ReactDOM.render(view.parseSchema(schema),
   document.getElementById('content'));
 ```
 
-### Try the Demo
+### Demo an Example Codebase
 
 To run the demo
-* `npm install`
-* `npm run demo`
+* `cd demo && npm install`
+* `npm start`
 * The app will be served at http://localhost:8080
 
 ### Contribution and Code of Conduct
