@@ -1,11 +1,9 @@
-/**
- * Intentionally un-minified for your debugging pleasure
-*/
 (function () {
   var $CONTENT = document.getElementById('content');
-  var e = React.createElement;
-
   var playground = new ReactJsonSchema.default();
+  playground.setComponentMap({
+    Swiper: ReactIdSwiper
+  });
 
   var editor = ace.edit('editor', {
     mode: 'ace/mode/json',
@@ -15,9 +13,10 @@
     displayIndentGuides: false,
     fontSize: 14,
     fontFamily: 'Roboto Mono',
-    theme: 'ace/theme/chrome',
-    useSoftTabs: true,
-    tabSize: 2
+    theme: 'ace/theme/terminal',
+    useSoftTabs: false,
+    tabSize: 2,
+    showGutter: false,
   });
 
   function renderData() {
@@ -25,7 +24,9 @@
       var data = JSON.parse(editor.getValue());
       ReactDOM.render(playground.parseSchema(data), $CONTENT);
     } catch (e) {
-      ReactDOM.render(e.message, $CONTENT);
+      ReactDOM.render(React.createElement('span', {
+        'style': { 'color': 'rgb(238, 16, 0)' }
+      }, e.message), $CONTENT);
     }
   }
 
