@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FormGroup,Radio } from 'react-bootstrap';
 
 class CheckboxField extends React.Component {
@@ -28,9 +29,9 @@ class CheckboxField extends React.Component {
 }
 
 CheckboxField.propTypes = {
-  checkboxes: React.PropTypes.arrayOf(
-    React.PropTypes.shape({
-      label: React.PropTypes.string.isRequired
+  checkboxes: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired
     }).isRequired
   ).isRequired
 };

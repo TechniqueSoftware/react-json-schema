@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Button, Grid, Col, Row } from 'react-bootstrap';
 
 class ContactForm extends React.Component {
@@ -29,8 +30,8 @@ class ContactForm extends React.Component {
 }
 
 ContactForm.propTypes = {
-  title: React.PropTypes.string.isRequired,
-  children: React.PropTypes.arrayOf(React.PropTypes.element)
+  title: PropTypes.string.isRequired,
+  children: PropTypes.arrayOf(PropTypes.element)
 };
 
 export default ContactForm;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
 
 const alphaRegex = /^$|[A-Z]+$/i;
@@ -29,9 +30,9 @@ class StringField extends React.Component {
 }
 
 StringField.propTypes = {
-  label: React.PropTypes.string.isRequired,
-  name: React.PropTypes.string.isRequired,
-  help: React.PropTypes.string
+  label: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  help: PropTypes.string
 };
 
 export default StringField;
