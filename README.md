@@ -2,11 +2,11 @@
 
 `npm install react-json-schema`
 
-Construct React elements from JSON by mapping JSON definitions to React components that you expose.
+Construct React elements from JSON by mapping JSON definitions to React components. Use react-json-schema for data-driven layouts, or as an abstraction layer for React components and props.
 
 Render anywhere (as long as it's DOM)! Since react-json-schema does not perform any rendering, the method in which you want to render is up to you. For example, you can use ReactDOMServer.render, ReactDOM.renderToString, etc. if you'd like. This also means JSX is not a dependency for react-json-schema.
 
-[Quick Documentation](http://techniquesoftware.github.io/react-json-schema/)
+[Quick Documentation and Examples](http://techniquesoftware.github.io/react-json-schema/)
 
 ### Full Documentation
 
@@ -124,6 +124,10 @@ To run the demo
 ### Contribution and Code of Conduct
 
 If you'd like to ask a question, raise a concern, or contribute, please follow our [contribution guidelines](CONTRIBUTE.md).
+
+### Alternatives
+
+* [react-jsonschema-form](https://github.com/mozilla-services/react-jsonschema-form): A React component for building Web forms from JSON Schema. This library further abstracts React components, making it easier to build forms. Also, it comes with components. React-json-schema is a lighter alternative that allows the use of any components.
 
 ### Roadmap
 
