@@ -84,9 +84,9 @@ Example for exposing non-exposed components (ES6)
 contactForm.setComponentMap({ ContactForm, StringField });
 ```
 
-### Event Handler Mapping
+#### Event Handler Mapping
 
-In certain cases, such as when rendering a schema from a database, it is beneficial to be able to map functions to strings that can be saved in a database. When parsing a schema, the `parseSchema` method will automatically parse React synthetic event handlers from strings to functions based on a provided map. To define other properties  as event handlers, use the special `@handlers` key in the schema. The `handlerMap`, and the `@handler` props only need to be used when passing a function straight to the schema is not feasible. 
+In certain cases, such as when rendering a schema from a database, it is beneficial to be able to map functions from a string, such as can be saved in a database. When parsing a schema, the `parseSchema` method will automatically parse React synthetic event handlers from strings to functions based on a provided map. To define other properties  as event handlers, use the special `@handlers` key in the schema. The `handlerMap`, and the `@handler` props only need to be used when passing a function straight to the schema is not feasible. 
 
 Example (ES6)
 ```js
