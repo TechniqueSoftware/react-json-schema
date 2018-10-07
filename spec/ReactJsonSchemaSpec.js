@@ -95,6 +95,44 @@ export default describe('ReactJsonSchema', () => {
       expect(React.createElement).toHaveBeenCalledWith(jasmine.any(Function), { someProp: schema.someProp }, jasmine.any(Array));
     });
   });
+  describe('when resolving handlers', () => {
+    it('should resolve known synthetic events to an actual function', () => {
+      const HandlerTester = ({ onClick, onKeyDown }) => <button onKeyDown={onKeyDown} onClick={onClick} />;
+      const schema = { component: HandlerTester, onClick: 'returnTrue', onKeyDown: 'returnFalse' };
+      const handlerMap = {
+        returnTrue: () => true,
+        returnFalse: () => false,
+      };
+      reactJsonSchema.setHandlerMap(handlerMap);
+      spyOn(React, 'createElement');
+      reactJsonSchema.createComponent(schema);
+      expect(React.createElement).toHaveBeenCalledWith(jasmine.any(Function), { onClick: handlerMap.returnTrue, onKeyDown: handlerMap.returnFalse }, undefined);
+    });
+    it('should resolve properties defined as handlers', () => {
+      const HandlerTester = ({ customHandler }) => <button onClick={customHandler} />;
+      const schema = { component: HandlerTester, customHandler: 'returnTrue', '@handlers': ['customHandler'] };
+      const handlerMap = {
+        returnTrue: () => true,
+        returnFalse: () => false,
+      };
+      reactJsonSchema.setHandlerMap(handlerMap);
+      spyOn(React, 'createElement');
+      reactJsonSchema.createComponent(schema);
+      expect(React.createElement).toHaveBeenCalledWith(jasmine.any(Function), { customHandler: handlerMap.returnTrue }, undefined);
+    });
+    it('should handle native functions without error, even when the props are defined in the handler prop', () => {
+      const HandlerTester = ({ onClick, customHandler }) => <button onKeyDown={customHandler} onClick={onClick} />;
+      const handlerMap = {
+        returnTrue: () => true,
+        returnFalse: () => false,
+      };
+      const schema = { component: HandlerTester, onClick: handlerMap.returnTrue, onKeyDown: 'returnFalse', customHandler: () => '', '@handlers': ['onClick', 'onKeyDown', 'customHandler'] };
+      reactJsonSchema.setHandlerMap(handlerMap);
+      spyOn(React, 'createElement');
+      reactJsonSchema.createComponent(schema);
+      expect(React.createElement).toHaveBeenCalledWith(jasmine.any(Function), { onClick: handlerMap.returnTrue, onKeyDown: handlerMap.returnFalse, customHandler: jasmine.any(Function) }, undefined);
+    });
+  });
   describe('when resolving components (evaluating schema for mapping requirements)', () => {
     it('should throw an error when a schema element does not have a component attribute.', () => {
       expect(reactJsonSchema.resolveComponent).toThrowError();
