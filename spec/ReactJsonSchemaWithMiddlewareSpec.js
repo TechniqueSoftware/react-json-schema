@@ -3,6 +3,7 @@
 
 import React from 'react';
 import reactJsonSchemaFactory from '../lib/ReactJsonSchemaFactory';
+import resolveFunctionMiddleware from '../lib/middleware/resolveFunctionMiddleware';
 
 let reactJsonSchema;
 let schema;
@@ -14,29 +15,6 @@ export default describe('ReactJsonSchema', () => {
     }
   }
 
-  const passFunctionMiddleware = fnMap => (_schema, next) => {
-    const schema = _schema;
-    const handlerMap = fnMap;
-    const handlers = [
-      'onCopy', 'onCut', 'onPaste', 'onCompositionEnd', 'onCompositionStart', 'onCompositionUpdate', 'onKeyDown', 'onKeyPress', 'onKeyUp', 'onFocus', 'onBlur', 'onChange', 'onInput', 'onInvalid', 'onSubmit', 'onClick', 'onContextMenu', 'onDoubleClick', 'onDrag', 'onDragEnd', 'onDragEnter', 'onDragExit',
-      'onDragLeave', 'onDragOver', 'onDragStart', 'onDrop', 'onMouseDown', 'onMouseEnter', 'onMouseLeave',
-      'onMouseMove', 'onMouseOut', 'onMouseOver', 'onMouseUp', 'onPointerDown', 'onPointerMove', 'onPointerUp', 'onPointerCancel', 'onGotPointerCapture',
-      'onLostPointerCapture', 'onPointerEnter', 'onPointerLeave', 'onPointerOver', 'onPointerOut', 'onSelect', 'onTouchCancel', 'onTouchEnd', 'onTouchMove', 'onTouchStart', 'onScroll', 'onWheel', 'onAbort', 'onCanPlay', 'onCanPlayThrough', 'onDurationChange', 'onEmptied', 'onEncrypted',
-      'onEnded', 'onError', 'onLoadedData', 'onLoadedMetadata', 'onLoadStart', 'onPause', 'onPlay',
-      'onPlaying', 'onProgress', 'onRateChange', 'onSeeked', 'onSeeking', 'onStalled', 'onSuspend',
-      'onTimeUpdate', 'onVolumeChange', 'onWaiting', 'onLoad', 'onError', 'onAnimationStart', 'onAnimationEnd', 'onAnimationIteration', 'onTransitionEnd', 'onToggle'
-    ].concat(schema['@handlers'] || []);
-    const keys = Object.keys(schema).filter(prop => handlers.indexOf(prop) !== -1);
-    for (let i = 0; i < keys.length; i += 1) {
-      const key = keys[i];
-      if (typeof schema[key] === 'string') {
-        schema[key] = handlerMap[schema[key]];
-      }
-    }
-    if (schema['@handlers']) delete schema['@handlers'];
-    next(schema);
-  };
-
   const handlerMap = {
     returnTrue: () => true,
     returnFalse: () => false,
@@ -44,7 +22,7 @@ export default describe('ReactJsonSchema', () => {
 
 
   beforeEach(() => {
-    reactJsonSchema = reactJsonSchemaFactory();
+    reactJsonSchema = reactJsonSchemaFactory([resolveFunctionMiddleware(handlerMap)]);
     /* eslint-disable */
     schema = {
       "component": Tester,
@@ -177,6 +155,31 @@ export default describe('ReactJsonSchema', () => {
       reactJsonSchema2.setComponentMap(componentMap2);
       expect(reactJsonSchema1.getComponentMap()).toEqual(componentMap1);
       expect(reactJsonSchema2.getComponentMap()).toEqual(componentMap2);
+    });
+  });
+  describe('middleware', () => {
+    describe('when resolving handlers', () => {
+      it('should resolve known synthetic events to an actual function', () => {
+        const HandlerTester = ({ onClick, onKeyDown }) => <button onKeyDown={onKeyDown} onClick={onClick} />;
+        const schema = { component: HandlerTester, onClick: 'returnTrue', onKeyDown: 'returnFalse' };
+        spyOn(React, 'createElement');
+        reactJsonSchema.createComponent(schema);
+        expect(React.createElement).toHaveBeenCalledWith(jasmine.any(Function), { onClick: handlerMap.returnTrue, onKeyDown: handlerMap.returnFalse }, undefined);
+      });
+      it('should resolve properties defined as handlers', () => {
+        const HandlerTester = ({ customHandler }) => <button onClick={customHandler} />;
+        const schema = { component: HandlerTester, customHandler: 'returnTrue', '@handlers': ['customHandler'] };
+        spyOn(React, 'createElement');
+        reactJsonSchema.createComponent(schema);
+        expect(React.createElement).toHaveBeenCalledWith(jasmine.any(Function), { customHandler: handlerMap.returnTrue }, undefined);
+      });
+      it('should handle native functions without error, even when the props are defined in the handler prop', () => {
+        const HandlerTester = ({ onClick, customHandler }) => <button onKeyDown={customHandler} onClick={onClick} />;
+        const schema = { component: HandlerTester, onClick: handlerMap.returnTrue, onKeyDown: 'returnFalse', customHandler: () => '', '@handlers': ['onClick', 'onKeyDown', 'customHandler'] };
+        spyOn(React, 'createElement');
+        reactJsonSchema.createComponent(schema);
+        expect(React.createElement).toHaveBeenCalledWith(jasmine.any(Function), { onClick: handlerMap.returnTrue, onKeyDown: handlerMap.returnFalse, customHandler: jasmine.any(Function) }, undefined);
+      });
     });
   });
 });
